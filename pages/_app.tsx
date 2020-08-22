@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react'
 import Head from 'next/head'
 import Router from 'next/router'
-import { CircularProgress } from '@material-ui/core'
+import { CssBaseline  } from '@material-ui/core'
 
 import { Layout } from '../components'
 
@@ -25,7 +25,7 @@ export default function App ({Component, pageProps}) {
     if (jssStyles) {
       jssStyles.parentElement.removeChild(jssStyles)
     }
-    console.log(isLoading)
+  
   }, [isLoading, setIsLoading])
 
   return (
@@ -35,6 +35,7 @@ export default function App ({Component, pageProps}) {
         <meta name='description' content='An opinionated Ethereum DApp frontend template using React, Next.js, Typescript, Material-UI, and Web3-React'/>
       </Head>
       <Layout>
+        <CssBaseline/>
         <div style={{minHeight: '6em'}} />
         <Component {...pageProps} />
       </Layout>

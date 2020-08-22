@@ -1,5 +1,5 @@
 import React from 'react'
-import { ServerStyleSheets, CssBaseline } from '@material-ui/core'
+import { ServerStyleSheets } from '@material-ui/core'
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 // THIS FILE IS REQUIRED FOR MATERIAL-UI STYLES TO LOAD IN NEXT.JS
 //  reference: https://github.com/mui-org/material-ui/blob/master/examples/nextjs/pages/_document.js
@@ -10,8 +10,13 @@ export default class MyDocument extends Document {
   render () {
     return (
       <Html lang='en'>
+        <Head>
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+          />
+        </Head>
         <body>
-          <CssBaseline/>
           <Main/>
           <NextScript/>
         </body>  
