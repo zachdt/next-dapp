@@ -8,6 +8,8 @@ import {
   useMemo
 } from 'react'
 
+import Link from 'next/link'
+
 import { 
   ThemeProvider, 
   CssBaseline, 
@@ -25,6 +27,9 @@ import WbSunnyIcon from '@material-ui/icons/WbSunny'
 import { lightTheme, darkTheme } from './Theme'
 
 import { useDarkMode } from '../../hooks/user'
+import { Settings } from '../Settings'
+import { Account } from '../Web3React'
+import { Footer } from '../Footer'
 
 export const Layout = ({children}) => {
 
@@ -40,20 +45,19 @@ export const Layout = ({children}) => {
               direction='row' 
               alignItems='center' 
               justify='flex-start' 
-              style={{margin: '1em'}}>
-              <a style={{ textDecoration: 'none', cursor: 'pointer'}} href='https://github.com/zachdt/next-dapp'>
+              style={{margin: '1em', cursor: 'pointer'}}>
+              <Link href='/'>
                 <Typography variant='h3' color='textPrimary'>next-dapp</Typography>
-              </a>
+              </Link>
             </Grid>
-            <Grid container direction='row' alignItems='center' justify='flex-end' style={{marginRight: '2em'}}>
-              <WbSunnyIcon color='action'/>
-              <Switch checked={(dark === 'true')} onChange={e => setDark(e.target.checked.toString())}/>
-            </Grid>
+            <Account />
+            <Settings checked={(dark === 'true')} onChange={e => setDark(e.target.checked.toString())}/>
           </Toolbar>
         </AppBar>
         <Box color='default' style={{minHeight: '100vh'}}>
           {children}
         </Box>
+        <Footer />
       </ThemeProvider>
     </div>
   )

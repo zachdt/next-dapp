@@ -1,14 +1,14 @@
 import {useEffect, useState} from 'react'
 import Head from 'next/head'
 import Router from 'next/router'
-import { CssBaseline  } from '@material-ui/core'
+import { CssBaseline, CircularProgress  } from '@material-ui/core'
 
 import { Layout } from '../components'
 
 
 export default function App ({Component, pageProps}) {
 
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     console.log('Here we go!')
