@@ -1,25 +1,29 @@
 import {useEffect, useState} from 'react'
 import Head from 'next/head'
 import Router from 'next/router'
-import { CssBaseline, CircularProgress  } from '@material-ui/core'
+import { CssBaseline, LinearProgress  } from '@material-ui/core'
 
 import { Layout } from '../components'
 
 
 export default function App ({Component, pageProps}) {
 
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     console.log('Here we go!')
-
+  
+    Router.events.on('routeChangeStart', () => {
+      setIsLoading(true)
+    })
     Router.events.on('routeChangeComplete', () => {
       setIsLoading(false)
     })
-
     Router.events.on('routeChangeError', () => {
       setIsLoading(false)
     })
+
+
 
     const jssStyles = document.querySelector('#jss-server-side')
     if (jssStyles) {
@@ -36,8 +40,8 @@ export default function App ({Component, pageProps}) {
       </Head>
       <Layout>
         <CssBaseline/>
-        <div style={{minHeight: '6em'}} />
-        <Component {...pageProps} />
+        <div style={{minHeight: '7em'}} />
+        {isLoading ? <LinearProgress color='secondary' style={{marginTop: '1.5em'}} /> : <Component {...pageProps} /> }
       </Layout>
     </>
   )

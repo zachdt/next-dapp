@@ -2,28 +2,88 @@ import {
   Typography,
   Paper,
   Grid,
-  Divider
+  Divider,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemAvatar,
+  Avatar,
+  Button
 } from '@material-ui/core'
 
-import AddIcon from '@material-ui/icons/Add'
 
 export default function index() {
+
   return (
-    <Paper elevation={9} style={{margin: '1em', padding: '3em'}}>
-      <Grid container direction='row' alignItems='center' justify='center'>
+    <>
+      <Grid container direction='column' alignItems='center' justify='center'>
         <img width='100em' src='https://img2.pngio.com/ethereum-brand-assets-ethereumorg-eth-png-2500_4168.png'/>
-        <AddIcon style={{fontSize: '7em', margin: '1em'}} />
-        <img width='200em' src='https://www.elasticpath.com/sites/default/files/2020-04/NextJS_Logo_Ping_Pong_Element.jpg'/>
-      </Grid>
-      <br/>
-        <Typography variant='h3'>Welcome to 
-          <a style={{ textDecoration: 'none', cursor: 'pointer', marginLeft: '.3em'}} href='https://github.com/zachdt/next-dapp'>
+        <br/>
+        <Typography variant='h1' color='textPrimary'>
             next-dapp
-          </a>
         </Typography>
-      <br/>
-      <Divider />
-      <Typography variant='h6'>A fully featured Next.js template for modern Etheruem DApp developement.</Typography>
-    </Paper>
+        <br/>
+        <Button variant='outlined' color='inherit' href='https://github.com/zachdt/next-dapp'>View on Github</Button>
+        <br/>
+        <Typography variant='h6'>A fully featured Next.js template for modern Etheruem DApp development</Typography>
+      </Grid>
+      <div style={{minHeight: '2em'}}/>
+      <Grid container direction='row' alignItems='flex-start' justify='space-around' spacing={4} style={{padding: '1em'}} >
+        <Grid item xs={12} sm={6} md={4} xl={4}>
+          <Paper elevation={9} style={{padding: '1em'}}>
+            <Typography variant='h5' style={{padding: '1em'}}>Wallet Support</Typography>
+            <List>
+              <ListItem>
+                <ListItemAvatar>
+                  <Avatar alt="Metamask logo" src='https://gitcoin.co/dynamic/avatar/MetaMask'/>
+                </ListItemAvatar>
+                <ListItemText primary='Metamask'/>
+              </ListItem>
+              <Divider variant='inset' style={{width: '30%'}} />
+              <ListItem>
+                <ListItemAvatar>
+                  <Avatar alt="Coinbase Wallet logo" src='https://lh3.googleusercontent.com/3pwxYyiwivFCYflDJtyWDnJ3ZgYuN_wBQBHqCXbKh9tJTdTL1uOrY1VyxeC_yXLTNZk'/>
+                </ListItemAvatar>
+                <ListItemText primary='Coinbase Wallet'/>
+              </ListItem>
+            </List>
+          </Paper>
+        </Grid>
+        <Grid item xs={12} sm={6} md={4} xl={4}>
+          <Paper elevation={9} style={{padding: '1em'}}>
+            <Typography variant='h5' style={{padding: '1em'}}>Technical Stack</Typography>
+            <List>
+              <ListItem>
+                <ListItemAvatar>
+                  <Avatar alt="React logo" src='https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/640px-React-icon.svg.png'/>
+                </ListItemAvatar>
+                <ListItemText primary='React'/>
+              </ListItem>
+              <Divider variant='inset' style={{width: '30%'}} />
+              <ListItem>
+                <ListItemAvatar>
+                  <Avatar alt="Next.js logo" src='https://cdn.worldvectorlogo.com/logos/next-js.svg'/>
+                </ListItemAvatar>
+                <ListItemText primary='Next.js'/>
+              </ListItem>
+              <Divider variant='inset' style={{width: '30%'}} />
+              <ListItem>
+                <ListItemAvatar>
+                  <Avatar alt="TS logo" src='https://pbs.twimg.com/profile_images/1290672565690695681/0G4bie6b.jpg'/>
+                </ListItemAvatar>
+                <ListItemText primary='TypeScript'/>
+              </ListItem>
+              <Divider variant='inset' style={{width: '30%'}} />
+              <ListItem>
+                <ListItemAvatar>
+                  <Avatar alt="Material UI logo" src='https://material-ui.com/static/logo.png'/>
+                </ListItemAvatar>
+                <ListItemText primary='Material-UI'/>
+              </ListItem>
+            </List>
+          </Paper>
+        </Grid>
+      </Grid>
+    </>
   )
 }

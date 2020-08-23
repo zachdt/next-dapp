@@ -2,7 +2,8 @@ import {useState} from 'react'
 import {
   Button,
   Grid,
-  Modal
+  Modal,
+  Typography
 } from '@material-ui/core'
 
 import { OptionsModal } from '../Web3React'
@@ -20,7 +21,9 @@ export const Account = () => {
 
   return (
     <>
-      <Button onClick={handleOpen}>Link Wallet</Button>
+      <div style={{width: '20em'}}>
+        <Button onClick={handleOpen} variant='outlined' size='large'>connect wallet</Button>
+      </div>
       <Modal
         open={open}
         onClose={handleClose}

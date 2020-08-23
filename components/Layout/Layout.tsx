@@ -36,7 +36,7 @@ export const Layout = ({children}) => {
   const [dark, setDark] = useDarkMode()
 
   return (
-    <div>
+    <>
       <ThemeProvider theme={(dark === 'true') ? createMuiTheme(darkTheme) : createMuiTheme(lightTheme)}>
         <AppBar position='fixed' color='default'>
           <Toolbar>
@@ -54,11 +54,12 @@ export const Layout = ({children}) => {
             <Settings checked={(dark === 'true')} onChange={e => setDark(e.target.checked.toString())}/>
           </Toolbar>
         </AppBar>
-        <Box color='default' style={{minHeight: '100vh'}}>
+        // overflowX required to prevent AppBar bug
+        <Box color='default' style={{height: 'auto', maxWidth: '100%', overflowX: 'hidden', overflowY: 'visible'}}>
           {children}
+          <Footer />
         </Box>
-        <Footer />
       </ThemeProvider>
-    </div>
+    </>
   )
 }

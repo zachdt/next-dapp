@@ -39,7 +39,7 @@ export const Settings = (props: Props) => {
       )}
       <Popper open={open} anchorEl={act}>
         <ClickAwayListener onClickAway={handleClickAway}>
-          <Paper elevation={9} style={{padding: '1.2em', marginTop: '1em'}}>
+          <Paper elevation={9} style={{padding: '1.2em', marginTop: '1em', zIndex: 1}}>
             <Grid container direction='row' alignItems='center' justify='center' style={{marginLeft: '.4em'}}>
               <WbSunnyIcon color='action'/>
               <Switch checked={props.checked} onChange={props.onChange}/>

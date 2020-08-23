@@ -8,10 +8,10 @@ import {
 export const Footer = () => {
   
   return (
-    <Toolbar color='default' style={{top: 'auto', bottom: '0', padding: '.5em'}}>
+    <Toolbar color='default' style={{top: 'auto', bottom: '0', paddingTop: '1em'}}>
       <Grid container direction='row' alignItems='center' justify='space-around'>
-        <Typography color='textSecondary'>GNU v3.0 License</Typography>
-        <Typography color='textSecondary'>template by <strong>zachdt</strong></Typography>
+        <Typography variant='body2' color='textSecondary'>GNU v3.0 License</Typography>
+        <Typography variant='body2' color='textSecondary'>by <strong>zachdt</strong></Typography>
       </Grid>
     </Toolbar>
   )
