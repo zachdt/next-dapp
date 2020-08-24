@@ -25,13 +25,13 @@ export const Option = (props: Props) => {
 
   if (isConnected) {
     return (
-      <ListItem button disabled>
+      <ListItem button selected onClick={onClick} >
         <ListItemAvatar>
           <Avatar alt={name} src={icon}/>
         </ListItemAvatar>
         <ListItemText primary={name} />
-        <ListItemSecondaryAction color='sucess'>
-          <CheckCircleIcon color='inherit'/>
+        <ListItemSecondaryAction style={{color: 'green', fontSize: '3em'}}>
+          <CheckCircleIcon/>
         </ListItemSecondaryAction>
       </ListItem>
     )

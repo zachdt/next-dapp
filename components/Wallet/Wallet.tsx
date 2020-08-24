@@ -48,6 +48,7 @@ export const Wallet = forwardRef(() => {
   }
   const handleClose = () => {
     if (view === WALLET_VIEWS.PENDING) setView(WALLET_VIEWS.OPTIONS)
+    if (account) setView(WALLET_VIEWS.ACCOUNT)
     setOpen(false)
   }
 
@@ -92,16 +93,16 @@ export const Wallet = forwardRef(() => {
 
     return Object.keys(WALLETS).map(key => {
       const option = WALLETS[key]
-
+      const active = (option.connector === connector)
       return (
         <Option
           key={key}
           onClick={() => {
-            option.connector === connector
+            active
               ? setView(WALLET_VIEWS.ACCOUNT)
               : tryActivation(option.connector)
           }}
-          isConnected={false}
+          isConnected={active}
           icon={option.icon}
           name={option.name}
         />
@@ -152,6 +153,11 @@ export const Wallet = forwardRef(() => {
         )}
       </>
     )
+  }
+  if (account) {
+    <div style={{width: '20em'}}>
+      <Button onClick={handleOpen} variant='outlined' size='large'>{account}</Button>
+    </div>
   }
   return (
     <>
