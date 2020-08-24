@@ -3,8 +3,9 @@ import { ServerStyleSheets } from '@material-ui/core'
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 // THIS FILE IS REQUIRED FOR MATERIAL-UI STYLES TO LOAD IN NEXT.JS
 //  reference: https://github.com/mui-org/material-ui/blob/master/examples/nextjs/pages/_document.js
-// 
-// Only useage of Class Component
+//
+
+
 export default class MyDocument extends Document {
 
   render () {

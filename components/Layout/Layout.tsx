@@ -28,8 +28,9 @@ import { lightTheme, darkTheme } from './Theme'
 
 import { useDarkMode } from '../../hooks/user'
 import { Settings } from '../Settings'
-import { Account } from '../Web3React'
+import { Wallet } from '../Wallet/Wallet'
 import { Footer } from '../Footer'
+
 
 export const Layout = ({children}) => {
 
@@ -45,12 +46,12 @@ export const Layout = ({children}) => {
               direction='row' 
               alignItems='center' 
               justify='flex-start' 
-              style={{margin: '1em', cursor: 'pointer'}}>
+              style={{margin: '.7em', cursor: 'pointer'}}>
               <Link href='/'>
-                <Typography variant='h3' color='textPrimary'>next-dapp</Typography>
+                <Typography variant='h4' color='textPrimary'>next-dapp</Typography>
               </Link>
             </Grid>
-            <Account />
+            <Wallet />
             <Settings checked={(dark === 'true')} onChange={e => setDark(e.target.checked.toString())}/>
           </Toolbar>
         </AppBar>

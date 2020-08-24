@@ -1,3 +1,5 @@
+// REPLACE THIS :)
+
 import {
   Typography,
   Paper,
@@ -10,7 +12,6 @@ import {
   Avatar,
   Button
 } from '@material-ui/core'
-
 
 export default function index() {
 
@@ -25,7 +26,7 @@ export default function index() {
         <br/>
         <Button variant='outlined' color='inherit' href='https://github.com/zachdt/next-dapp'>View on Github</Button>
         <br/>
-        <Typography variant='h6'>A fully featured Next.js template for modern Etheruem DApp development</Typography>
+        <Typography variant='h6'>A fully featured Next.js template for rapid Etheruem DApp development</Typography>
       </Grid>
       <div style={{minHeight: '2em'}}/>
       <Grid container direction='row' alignItems='flex-start' justify='space-around' spacing={4} style={{padding: '1em'}} >

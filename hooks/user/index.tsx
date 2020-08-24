@@ -7,5 +7,3 @@ export function useDarkMode() {
   //       it is difficult to perform type transformations outside of these hooks.
   return useLocalStorage<string>('darkMode', 'false')
 }
-
-
