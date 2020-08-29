@@ -30,7 +30,7 @@ export const Option = (props: Props) => {
           <Avatar alt={name} src={icon}/>
         </ListItemAvatar>
         <ListItemText primary={name} />
-        <ListItemSecondaryAction style={{color: 'green', fontSize: '3em'}}>
+        <ListItemSecondaryAction style={{fontSize: '3em'}}>
           <CheckCircleIcon/>
         </ListItemSecondaryAction>
       </ListItem>

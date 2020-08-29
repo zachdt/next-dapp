@@ -7,7 +7,7 @@ import { Web3Provider } from '@ethersproject/providers'
 import { Web3ReactProvider, createWeb3ReactRoot } from '@web3-react/core'
 
 import { CssBaseline, LinearProgress  } from '@material-ui/core'
-import { Layout } from '../components'
+import { Layout, Web3Manager } from '../components'
 
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -46,11 +46,13 @@ export default function App ({ Component, pageProps }) {
           <meta name='description' content='An opinionated Ethereum DApp frontend template using React, Next.js, Typescript, Material-UI, and Web3-React'/>
         </Head>
         <Web3ReactProvider getLibrary={getLibrary}>
-          <Layout>
-            <CssBaseline/>
-            <div style={{minHeight: '7em'}} />
-            {isLoading ? <LinearProgress color='secondary' style={{marginTop: '1em'}} /> : <Component {...pageProps} /> }
-          </Layout>
+          <Web3Manager>
+            <Layout>
+              <CssBaseline/>
+              <div style={{minHeight: '7em'}} />
+              {isLoading ? <LinearProgress color='secondary' style={{marginTop: '1em'}} /> : <Component {...pageProps} /> }
+            </Layout>
+          </Web3Manager>
         </Web3ReactProvider>
       </>
     )

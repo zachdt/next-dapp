@@ -4,7 +4,7 @@ import { UnsupportedChainIdError,  useWeb3React } from '@web3-react/core'
 import { WalletConnectConnector, UserRejectedRequestError } from '@web3-react/walletconnect-connector'
 import {injected, walletconnect} from '../../connectors'
 
-import { usePrevious } from '../../hooks/utils'
+import { usePrevious } from '../../hooks'
 import { WALLETS } from '../../constants'
 
 import { Option } from './Option'
@@ -17,8 +17,11 @@ import {
   Divider,
   List,
   Button,
-  Modal
+  Modal,
+  IconButton,
+  Grid
 } from '@material-ui/core'
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos'
 
 export { Account } from './Account'
 
@@ -42,6 +45,7 @@ export const Wallet = forwardRef(() => {
 
   const activePrevious = usePrevious<any>(active)
   const connectorPrevious = usePrevious<any>(connector)
+
 
   const handleOpen = () => {
     setOpen(true)
@@ -74,10 +78,12 @@ export const Wallet = forwardRef(() => {
       connector.walletConnectProvider = undefined
     }
 
-    activate(connector, undefined, true).catch(error => {
+    activate(connector, undefined, true).then(() => {
+      setView(WALLET_VIEWS.ACCOUNT)
+    
+    }).catch(error => {
       if (error instanceof UserRejectedRequestError) {
         setPendingError(true)
-        handleClose()
         setView(WALLET_VIEWS.OPTIONS)
       }
       if (error instanceof UnsupportedChainIdError) {
@@ -124,10 +130,10 @@ export const Wallet = forwardRef(() => {
     }
     if (account && view === WALLET_VIEWS.ACCOUNT) {
       return (
-        <>
-          <Button onClick={() => {setView(WALLET_VIEWS.OPTIONS),[setView, view]}}>Change</Button>
-          <Account user={account}/>
-        </>
+        <Grid container direction='row' justify='flex-end' >
+          <Account address={account} method={connector} />
+          <Button variant='text' onClick={() => {setView(WALLET_VIEWS.OPTIONS),[setView, view]}}>Change Wallet</Button>
+        </Grid>
       )
     }
     if (pendingError) {
@@ -144,7 +150,7 @@ export const Wallet = forwardRef(() => {
           />
         ) : (
           <>
-            <Typography>Connect a Wallet</Typography>
+            <Typography variant='h6'>Connect Wallet</Typography>
             <br/>
             <List>
               {options()}
@@ -154,15 +160,14 @@ export const Wallet = forwardRef(() => {
       </>
     )
   }
-  if (account) {
-    <div style={{width: '20em'}}>
-      <Button onClick={handleOpen} variant='outlined' size='large'>{account}</Button>
-    </div>
-  }
   return (
     <>
       <div style={{width: '20em'}}>
-        <Button onClick={handleOpen} variant='outlined' size='large'>connect wallet</Button>
+        {account ? (
+          <Button onClick={handleOpen} variant='outlined' size='large'>{account.substring(0, 10)}...</Button>
+        ) : (
+          <Button onClick={handleOpen} variant='outlined' size='large'>connect wallet</Button>
+        )}
       </div>
       <Modal
         open={open}
@@ -174,4 +179,5 @@ export const Wallet = forwardRef(() => {
       </Modal>
     </>
   )
+  
 })

@@ -29,7 +29,7 @@ export default function index() {
         <Typography variant='h6'>A fully featured Next.js template for rapid Etheruem DApp development</Typography>
       </Grid>
       <div style={{minHeight: '2em'}}/>
-      <Grid container direction='row' alignItems='flex-start' justify='space-around' spacing={4} style={{padding: '1em'}} >
+      <Grid container direction='row' alignItems='flex-start' justify='space-evenly' spacing={4} style={{padding: '1em'}} >
         <Grid item xs={12} sm={6} md={4} xl={4}>
           <Paper elevation={9} style={{padding: '1em'}}>
             <Typography variant='h5' style={{padding: '1em'}}>Wallet Support</Typography>
@@ -38,7 +38,7 @@ export default function index() {
                 <ListItemAvatar>
                   <Avatar alt="Metamask logo" src='https://gitcoin.co/dynamic/avatar/MetaMask'/>
                 </ListItemAvatar>
-                <ListItemText primary='Metamask'/>
+                <ListItemText primary='MetaMask'/>
               </ListItem>
               <Divider variant='inset' style={{width: '30%'}} />
               <ListItem>
