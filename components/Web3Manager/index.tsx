@@ -3,6 +3,7 @@ import { useWeb3React } from '@web3-react/core'
 import { useEagerConnect, useInactiveListener } from '../../hooks/user'
 import { CircularProgress, Snackbar } from '@material-ui/core'
 
+// https://github.com/Uniswap/uniswap-interface/blob/master/src/components/Web3ReactManager/index.tsx
 export function Web3Manager({ children }: { children: JSX.Element }) {
   const { active } = useWeb3React()
   const { active: networkActive, error: networkError } = useWeb3React()
