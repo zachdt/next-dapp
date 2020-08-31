@@ -12,7 +12,6 @@ export const injected = new InjectedConnector({
 // no coinbase testnet, requires infura mainnet node URL
 export const walletconnect = new WalletConnectConnector({
   rpc: { 1: NETWORK_URL },
-  infuraId: '2a3d722e101b4c109fc7e99eee978960',
   bridge: 'https://bridge.walletconnect.org',
   qrcode: true,
   pollingInterval: 15000

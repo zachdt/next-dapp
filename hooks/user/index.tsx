@@ -3,12 +3,13 @@ import {useWeb3React} from '@web3-react/core'
 import { useLocalStorage } from '../utils/useLocalStorage'
 import { useEffect, useState } from 'react';
 import { injected } from '../../connectors/'
+import { LocalStorageKeys } from '../../constants/'
 
 export function useDarkMode() {
   // Warning: cannot use boolean, strings only with Local Storage.
   // Note: without a state management system,
   //       it is difficult to perform type transformations outside of these hooks.
-  return useLocalStorage<string>('darkMode', 'false')
+  return useLocalStorage<boolean>(LocalStorageKeys.darkMode, false)
 }
 
 // https://github.com/Uniswap/uniswap-interface/blob/master/src/hooks/index.ts

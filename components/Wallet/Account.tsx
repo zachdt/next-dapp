@@ -1,4 +1,3 @@
-import {useState, forwardRef} from 'react'
 import {
   Typography,
   Card,
@@ -8,17 +7,18 @@ import {
   Grid,
   CardActionArea,
   IconButton,
-  ListItem
+  ListItem,
+  Divider,
+  Tooltip
 } from '@material-ui/core'
 
-import LinkIcon from '@material-ui/icons/Link'
+import CallMadeIcon from '@material-ui/icons/CallMade';
 
 import { WALLETS } from '../../constants';
 
 export interface Props {
   address: string,
   method: any,
-  change?: any
 }
 export const Account = (props: Props) => {
 
@@ -29,17 +29,18 @@ export const Account = (props: Props) => {
         const option = WALLETS[key]
         if (option.connector === method ) {
           return (
-            <ListItem button component='a' href={`https://etherscan.io/address/${address}`} target='__none' style={{padding: '1em'}}>
+            <ListItem style={{padding: '1em'}}>
               <Grid container direction='row' alignItems='center' justify='space-between'>
-                <Avatar alt={option.name} src={option.icon}/>
-                <Typography variant='body1'>{address.slice(0, 10)}...{address.slice(address.length - 10, address.length)} </Typography>
-                <LinkIcon/>
+                <Avatar alt={option.name} src={option.icon}  style={{marginRight: '0em'}}/>
+                <Typography variant='body1'>{address.slice(0, 10)}...{address.slice(address.length - 10, address.length)}</Typography>
+                <Tooltip title='View on Etherscan'>
+                  <IconButton component='a' target='__none' href={`https://etherscan.io/address/${address}`}><CallMadeIcon style={{fontSize: '1em'}}/></IconButton>
+                </Tooltip>
               </Grid>
             </ListItem>
           )
         }
       })}
-
     </>    
   )
 }

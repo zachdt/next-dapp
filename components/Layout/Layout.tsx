@@ -38,7 +38,7 @@ export const Layout = ({children}) => {
 
   return (
     <>
-      <ThemeProvider theme={(dark === 'true') ? createMuiTheme(darkTheme) : createMuiTheme(lightTheme)}>
+      <ThemeProvider theme={dark ? createMuiTheme(darkTheme) : createMuiTheme(lightTheme)}>
         <AppBar position='fixed' color='default'>
           <Toolbar>
             <Grid 
@@ -52,7 +52,7 @@ export const Layout = ({children}) => {
               </Link>
             </Grid>
             <Wallet />
-            <Settings checked={(dark === 'true')} onChange={e => setDark(e.target.checked.toString())}/>
+            <Settings checked={dark} onChange={e => setDark(Boolean(e.target.checked))}/>
           </Toolbar>
         </AppBar>
         // overflowX required to prevent AppBar bug

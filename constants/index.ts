@@ -20,3 +20,12 @@ export const WALLETS: { [key: string]: Wallet } = {
     icon: 'https://lh3.googleusercontent.com/3pwxYyiwivFCYflDJtyWDnJ3ZgYuN_wBQBHqCXbKh9tJTdTL1uOrY1VyxeC_yXLTNZk'
   }
 }
+
+export enum LocalStorageKeys {
+  Version = 'version',
+  darkMode = 'darkMode',
+  Deadline = 'deadline',
+  Slippage = 'slippage',
+  Transactions = 'transactions',
+  Tokens = 'tokens',
+}

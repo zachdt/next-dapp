@@ -10,6 +10,7 @@ import { WALLETS } from '../../constants'
 import { Option } from './Option'
 import { Account } from './Account'
 import { Pending } from './Pending'
+import { AddressButton } from './AddressButton'
 
 import {
   Paper,
@@ -17,13 +18,12 @@ import {
   Divider,
   List,
   Button,
-  Modal,
+  Popper,
+  ClickAwayListener,
   IconButton,
   Grid
 } from '@material-ui/core'
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos'
-
-export { Account } from './Account'
 
 const WALLET_VIEWS = {
   OPTIONS: 'Options',
@@ -33,7 +33,7 @@ const WALLET_VIEWS = {
 
 export const Wallet = forwardRef(() => {
   // Modal
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(null)
 
   const { active, account, connector, activate, error } = useWeb3React()
 
@@ -47,14 +47,16 @@ export const Wallet = forwardRef(() => {
   const connectorPrevious = usePrevious<any>(connector)
 
 
-  const handleOpen = () => {
-    setOpen(true)
+  const handleClick = (e: any) => {
+    setOpen(open ? null : e.currentTarget)
   }
-  const handleClose = () => {
+  const handleClickAway = () => {
     if (view === WALLET_VIEWS.PENDING) setView(WALLET_VIEWS.OPTIONS)
     if (account) setView(WALLET_VIEWS.ACCOUNT)
-    setOpen(false)
+    setOpen(null)
   }
+
+  const isOpen = Boolean(open)
 
   useEffect(() => {
     if ((active && !activePrevious) || (connector && connector !== connectorPrevious && !error)) {
@@ -74,9 +76,9 @@ export const Wallet = forwardRef(() => {
     setPending(connector)
     setView(WALLET_VIEWS.PENDING)
 
-    if (connector instanceof WalletConnectConnector && connector.walletConnectProvider?.wc?.uri) {
+    /*if (connector instanceof WalletConnectConnector && connector.walletConnectProvider?.wc?.uri) {
       connector.walletConnectProvider = undefined
-    }
+    }*/
 
     activate(connector, undefined, true).then(() => {
       setView(WALLET_VIEWS.ACCOUNT)
@@ -130,7 +132,7 @@ export const Wallet = forwardRef(() => {
     }
     if (account && view === WALLET_VIEWS.ACCOUNT) {
       return (
-        <Grid container direction='row' justify='flex-end' >
+        <Grid container direction='row' justify='flex-end'>
           <Account address={account} method={connector} />
           <Button variant='text' onClick={() => {setView(WALLET_VIEWS.OPTIONS),[setView, view]}}>Change Wallet</Button>
         </Grid>
@@ -162,21 +164,22 @@ export const Wallet = forwardRef(() => {
   }
   return (
     <>
-      <div style={{width: '20em'}}>
+      <div style={{width: '35em'}}>
         {account ? (
-          <Button onClick={handleOpen} variant='outlined' size='large'>{account.substring(0, 10)}...</Button>
+          <AddressButton onClick={handleClick} address={account} method={connector}/>
         ) : (
-          <Button onClick={handleOpen} variant='outlined' size='large'>connect wallet</Button>
+          <Button onClick={handleClick} variant='outlined' size='large'>connect wallet</Button>
         )}
       </div>
-      <Modal
-        open={open}
-        onClose={handleClose}
+      <Popper open={isOpen}
+        anchorEl={open}
       >
-        <Paper elevation={9} style={{transform: 'translate(100%, 100%)', width: 400, padding: '2em'}} >
-          {getContent()}
-        </Paper>
-      </Modal>
+        <ClickAwayListener onClickAway={handleClickAway}>
+          <Paper elevation={9} style={{width: 350, padding: '1em'}} >
+            {getContent()}
+          </Paper>
+        </ClickAwayListener>
+      </Popper>
     </>
   )
   
