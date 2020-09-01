@@ -38,7 +38,7 @@ export const AddressButton = (props: Props) => {
                 <Typography variant='body1'>{address.slice(0, 10)}...{address.slice(address.length - 10, address.length)}</Typography>
                 <Tooltip title='View on Etherscan'>
                   <IconButton size='small' component='a' target='__none' href={`https://etherscan.io/address/${address}`}>
-                    {(transaction === null) ? (
+                    {(transaction !== null) ? (
                       <CallMadeIcon style={{fontSize: '1em'}}/>
                     ) : 
                       (transaction === false) ? (

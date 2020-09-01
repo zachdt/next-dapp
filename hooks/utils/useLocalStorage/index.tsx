@@ -1,8 +1,7 @@
-// Serialized implementation of LocalStorage from https://github.com/NoahZinsmeister/hypertext/blob/master/context.tsx
+// Serialized implementation of LocalStorage hook from https://github.com/NoahZinsmeister/hypertext/blob/master/context.tsx
 
 import { useState, Dispatch, SetStateAction, useEffect} from 'react'
 import { LocalStorageKeys } from '../../../constants'
-
 
 export function useLocalStorage<T, S = T>(
   key: LocalStorageKeys,

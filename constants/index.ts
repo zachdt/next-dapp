@@ -8,6 +8,16 @@ export interface Wallet {
   icon: string
 }
 
+// Uniswap Token Interface
+export interface Token {
+  name: string,
+  address: string,
+  symbol: string,
+  decimals: number,
+  chainId: number,
+  logoURI: string
+}
+
 export const WALLETS: { [key: string]: Wallet } = {
   METAMASK: {
     connector: injected,
@@ -21,11 +31,15 @@ export const WALLETS: { [key: string]: Wallet } = {
   }
 }
 
+export const DEFAULT_TOKEN_LIST: string = 'https://gateway.ipfs.io/ipns/tokens.uniswap.org'
+
+
 export enum LocalStorageKeys {
   Version = 'version',
-  darkMode = 'darkMode',
+  DarkMode = 'darkMode',
   Deadline = 'deadline',
   Slippage = 'slippage',
   Transactions = 'transactions',
   Tokens = 'tokens',
+  TokenList = 'tokenList'
 }
